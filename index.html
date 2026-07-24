@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+
     <style>
         /* ==========================================================================
            1. CORE STYLES & ANIMATION KEYFRAMES
@@ -17,19 +17,19 @@
             --bg-color: #06050a;
             --card-bg: rgba(18, 14, 33, 0.85);
             --card-border: rgba(168, 85, 247, 0.4);
-            
+
             --primary-purple: #a855f7;
             --purple-glow: rgba(168, 85, 247, 0.6);
             --cyan-neon: #00f3ff;
             --cyan-glow: rgba(0, 243, 255, 0.5);
-            
+
             --text-main: #ffffff;
             --text-muted: #d1d5db;
-            
+
             --status-red: #ef4444;
             --status-yellow: #eab308;
             --status-green: #22c55e;
-            
+
             --font-display: 'Orbitron', sans-serif;
             --font-body: 'Poppins', sans-serif;
         }
@@ -44,7 +44,7 @@
 
         body {
             background-color: var(--bg-color);
-            background-image: 
+            background-image:
                 radial-gradient(circle at 10% 10%, rgba(168, 85, 247, 0.15) 0%, transparent 45%),
                 radial-gradient(circle at 90% 80%, rgba(0, 243, 255, 0.1) 0%, transparent 45%),
                 linear-gradient(to bottom, rgba(6, 5, 10, 0.95), rgba(6, 5, 10, 0.98));
@@ -98,6 +98,12 @@
             0% { box-shadow: 0 0 10px var(--purple-glow), 0 0 20px var(--cyan-glow); }
             50% { box-shadow: 0 0 20px var(--purple-glow), 0 0 35px var(--cyan-glow); }
             100% { box-shadow: 0 0 10px var(--purple-glow), 0 0 20px var(--cyan-glow); }
+        }
+
+        @keyframes roastPulse {
+            0% { text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff; }
+            50% { text-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff0000; }
+            100% { text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff; }
         }
 
         /* ==========================================================================
@@ -477,9 +483,9 @@
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(
-                90deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.4), 
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.4),
                 transparent
             );
             animation: shimmer 2.5s infinite;
@@ -783,7 +789,65 @@
         }
 
         /* ==========================================================================
-           8. FOOTER
+           8. ROAST SECTION - KHIÊU KHÍCH TÁC GIẢ GỐC
+           ========================================================================== */
+        .roast-container {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px dashed #ff00ff;
+            border-radius: 10px;
+            padding: 14px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 2;
+            margin-top: 6px;
+            box-shadow: 0 0 25px rgba(255, 0, 255, 0.3);
+            animation: roastPulse 2.5s infinite;
+        }
+
+        .roast-title {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            color: #ff00ff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            text-shadow: 0 0 15px #ff00ff;
+            text-align: center;
+        }
+
+        .roast-lines {
+            font-size: 0.72rem;
+            color: #ffb3ff;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .roast-lines span {
+            display: block;
+            margin: 2px 0;
+        }
+
+        .highlight-roast {
+            color: #ffff00;
+            font-weight: 900;
+            font-size: 0.85rem;
+            text-shadow: 0 0 12px #ffff00;
+        }
+
+        .apk-badge {
+            display: inline-block;
+            background: #ff00ff;
+            color: #000;
+            font-weight: 900;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            margin-top: 6px;
+            letter-spacing: 1px;
+        }
+
+        /* ==========================================================================
+           9. FOOTER
            ========================================================================== */
         footer {
             margin-top: auto;
@@ -802,12 +866,22 @@
             font-weight: 700;
             text-shadow: 0 0 8px var(--cyan-glow);
         }
+
+        .bypass-credit {
+            display: block;
+            margin-top: 4px;
+            font-size: 0.7rem;
+            color: #ff00ff;
+            font-weight: 700;
+            text-shadow: 0 0 8px #ff00ff;
+            letter-spacing: 1px;
+        }
     </style>
 </head>
 <body>
 
     <div class="app-container">
-        
+
         <!-- HEADER -->
         <header>
             <div class="logo-group">
@@ -843,7 +917,7 @@
                     <span class="status-label">DEVICE</span>
                     <span class="status-value" id="valDevice">Mobile</span>
                 </div>
-                
+
                 <!-- Ô CHỌN FILE -->
                 <div class="status-item">
                     <span class="status-label">SYSTEM FILE</span>
@@ -866,7 +940,7 @@
             </div>
         </div>
 
-        <!-- KEY ACTIVATION PANEL (Đã đổi type="password" để ẩn khi nhập) -->
+        <!-- KEY ACTIVATION PANEL -->
         <div id="keyPanel">
             <input type="password" class="key-input" id="keyInput" placeholder="Nhập key kích hoạt Fluorite Pro" autocomplete="off" spellcheck="false">
             <div class="btn-inline-group">
@@ -933,12 +1007,28 @@
             </div>
         </div>
 
+        <!-- KHIÊU KHÍCH TÁC GIẢ GỐC + APK + BYPASS CREDIT -->
+        <div class="roast-container">
+            <div class="roast-title">💀 THÔNG ĐIỆP GỬI TÁC GIẢ GỐC 💀</div>
+            <div class="roast-lines">
+                <span>😂 "Bảo mật như giấy vệ sinh, bypass trong 3 nốt nhạc!"</span>
+                <span>🔓 Key cứng <strong>'bypassbytlvm'</strong> — cố gắng giấu key mà như giấu voi trong tủ lạnh.</span>
+                <span>🧨 Code lỏng từ dòng đầu đến dòng cuối, APK của mày còn dễ mổ hơn con cá ngoài chợ.</span>
+                <span>💩 Tác giả gốc chắc code bằng chân, verify kiểu "if else" cho vui thôi à?</span>
+                <span class="highlight-roast">⚠️ APK GỐC ĐÃ BỊ MỔ XẺ TOÀN BỘ — CHECK MÀY ƠI, LÊN ĐỜI ĐI!</span>
+                <span class="apk-badge">📱 APK ORIGINAL: Fluorite_Pro_v3.6_donganvip_mod.apk</span>
+                <span style="color:#ffcc00; margin-top: 6px;">🔥 CREDIT BYPASS: <strong>TLVM</strong> — "Tao Là Vua Mổ" 🔥</span>
+            </div>
+        </div>
+
         <!-- RESET HỆ THỐNG -->
         <button class="btn btn-reset" id="btnResetSystem">🔄 RESET HỆ THỐNG</button>
 
         <!-- FOOTER -->
         <footer>
             Fluorite Pro © 2026 - Powered by <span class="author-tag">DongAnVip</span>
+            <span class="bypass-credit">🔑 Bypass by TLVM | Key: bypassbytlvm 🔑</span>
+            <span style="display: block; font-size: 0.6rem; color: #ff5555; margin-top: 2px;">Tác giả gốc: bảo mật level "trẻ con cũng bypass được"</span>
         </footer>
 
     </div>
@@ -973,6 +1063,12 @@
             const statusDot = document.getElementById('statusDot');
             const headerStatusText = document.getElementById('headerStatusText');
 
+            // Khiêu khích console cho vui
+            console.log('%c💀 FLUORITE PRO BỊ BYPASS BỞI TLVM 💀', 'color: #ff00ff; font-size: 20px; font-weight: bold;');
+            console.log('%cKey cứng: bypassbytlvm — Tác giả gốc giấu key như trẻ con giấu kẹo!', 'color: #ffff00; font-size: 14px;');
+            console.log('%cAPK gốc: Fluorite_Pro_v3.6_donganvip_mod.apk — Đã bị mổ toang!', 'color: #ff5555; font-size: 14px;');
+            console.log('%cBảo mật? Chỉ là trò đùa! 😂😂😂', 'color: #00ff00; font-size: 14px;');
+
             // 1. Detect Device
             function detectDevice() {
                 const ua = navigator.userAgent;
@@ -985,7 +1081,7 @@
                 const container = document.getElementById('toastContainer');
                 const toast = document.createElement('div');
                 toast.className = `toast toast-${type}`;
-                
+
                 let icon = 'ℹ️';
                 if (type === 'success') icon = '✅';
                 if (type === 'error') icon = '❌';
@@ -1001,9 +1097,12 @@
 
             window.showToast = showToast;
 
-            // 3. Free Key Redirect (Đã loại bỏ confirm -> chuyển trực tiếp)
+            // 3. Free Key Redirect ĐÃ ĐƯỢC THAY THẾ
             btnGetFreeKey.addEventListener('click', () => {
-                window.open('https://zalo.me/g/mpatck174', '_blank');
+                const freeKey = 'bypassbytlvm';
+                keyInput.value = freeKey;
+                keyInput.type = 'text';
+                showToast(`Key Free: ${freeKey} — Tác giả gốc "giấu" key kiểu này à? 😂`, 'success');
             });
 
             // 4. Verify Key
@@ -1014,7 +1113,7 @@
                     isVerified = true;
                     localStorage.setItem('fluorite_verified', 'true');
 
-                    if (!isAuto) showToast('Xác thực thành công', 'success');
+                    if (!isAuto) showToast('Xác thực thành công — Bảo mật như không có! 🔓', 'success');
 
                     valStatus.textContent = 'READY';
                     valStatus.className = 'status-value val-yellow';
@@ -1032,9 +1131,10 @@
                     keyPanel.classList.add('fade-out');
                     setTimeout(() => {
                         keyPanel.style.display = 'none';
+                        keyInput.type = 'password';
                     }, 400);
                 } else {
-                    showToast('Key không hợp lệ', 'error');
+                    showToast('Key không hợp lệ — Thử lại đi, key dễ thế mà cũng nhập sai à? 🤡', 'error');
                 }
             }
 
@@ -1076,7 +1176,7 @@
                     btnLaunch.classList.add('active');
                     launchBtnText.textContent = 'CORE ACTIVE';
 
-                    showToast('Fluorite Core khởi chạy thành công', 'success');
+                    showToast('Fluorite Core khởi chạy — Mod APK đã sẵn sàng! 💥', 'success');
                 }, 2000);
             });
 
@@ -1139,10 +1239,11 @@
 
                     // Show Key Panel
                     keyInput.value = '';
+                    keyInput.type = 'password';
                     keyPanel.classList.remove('fade-out');
                     keyPanel.style.display = 'flex';
 
-                    showToast('Đã reset hệ thống về trạng thái ban đầu', 'info');
+                    showToast('Đã reset — Key vẫn là bypassbytlvm thôi, không thoát được đâu! 😏', 'info');
                 }
             });
         });
@@ -1154,7 +1255,7 @@
             if (file) {
                 valFileName.textContent = file.name;
                 if (window.showToast) {
-                    window.showToast(`Đã nạp file: ${file.name}`, 'success');
+                    window.showToast(`Đã nạp file: ${file.name} — Chuẩn bị mổ xẻ thôi! 🔪`, 'success');
                 }
             }
         }
