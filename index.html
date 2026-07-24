@@ -1,317 +1,1163 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SHOP PAIN • EXCLUSIVE</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fluorite Pro v3.6 - Futuristic Gaming Suite</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+           1. CORE STYLES & ANIMATION KEYFRAMES
+           ========================================================================== */
+        :root {
+            --bg-color: #06050a;
+            --card-bg: rgba(18, 14, 33, 0.85);
+            --card-border: rgba(168, 85, 247, 0.4);
+            
+            --primary-purple: #a855f7;
+            --purple-glow: rgba(168, 85, 247, 0.6);
+            --cyan-neon: #00f3ff;
+            --cyan-glow: rgba(0, 243, 255, 0.5);
+            
+            --text-main: #ffffff;
+            --text-muted: #d1d5db;
+            
+            --status-red: #ef4444;
+            --status-yellow: #eab308;
+            --status-green: #22c55e;
+            
+            --font-display: 'Orbitron', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+        }
 
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-body{
-background:linear-gradient(135deg,#000,#140000,#360000);
-height:100vh;
-overflow:hidden;
-color:white;
-display:flex;
-justify-content:center;
-align-items:center;
-}
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 10% 10%, rgba(168, 85, 247, 0.15) 0%, transparent 45%),
+                radial-gradient(circle at 90% 80%, rgba(0, 243, 255, 0.1) 0%, transparent 45%),
+                linear-gradient(to bottom, rgba(6, 5, 10, 0.95), rgba(6, 5, 10, 0.98));
+            background-attachment: fixed;
+            color: var(--text-main);
+            font-family: var(--font-body);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 16px 12px;
+            overflow-x: hidden;
+            position: relative;
+        }
 
-body::before{
-content:"";
-position:absolute;
-width:100%;
-height:100%;
-background:
-radial-gradient(circle at 30% 20%,rgba(255,0,0,.3),transparent),
-radial-gradient(circle at 70% 70%,rgba(255,0,100,.3),transparent);
-filter:blur(70px);
-animation:move 8s infinite alternate;
-}
+        /* Scanline Overlay Effect */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+            background-size: 100% 4px;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.4;
+        }
 
-@keyframes move{
-100%{
-transform:scale(1.3);
-}
-}
+        .app-container {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            z-index: 1;
+            position: relative;
+        }
 
-.box{
-position:relative;
-width:350px;
-padding:25px;
-background:rgba(0,0,0,.6);
-backdrop-filter:blur(15px);
-border-radius:25px;
-border:1px solid rgba(255,255,255,.1);
-box-shadow:
-0 0 25px red,
-0 0 60px rgba(255,0,0,.5);
-z-index:1;
-}
+        /* Keyframe Animations */
+        @keyframes pulse-border {
+            0% { border-color: rgba(168, 85, 247, 0.4); box-shadow: 0 0 10px rgba(168, 85, 247, 0.2); }
+            50% { border-color: rgba(0, 243, 255, 0.7); box-shadow: 0 0 20px rgba(0, 243, 255, 0.35); }
+            100% { border-color: rgba(168, 85, 247, 0.4); box-shadow: 0 0 10px rgba(168, 85, 247, 0.2); }
+        }
 
-.logo{
-font-size:30px;
-font-weight:bold;
-text-align:center;
-margin-bottom:5px;
-background:linear-gradient(red,#ff7777);
--webkit-background-clip:text;
-color:transparent;
-}
+        @keyframes shimmer {
+            0% { transform: translateX(-150%) skewX(-20deg); }
+            100% { transform: translateX(150%) skewX(-20deg); }
+        }
 
-/* Style mới cho phần thông tin Crack */
-.crack-by {
-text-align:center;
-font-size:13px;
-font-weight:bold;
-color:#ff4444;
-text-shadow: 0 0 8px rgba(255,0,0,0.6);
-margin-bottom:20px;
-}
+        @keyframes neon-glow-pulse {
+            0% { box-shadow: 0 0 10px var(--purple-glow), 0 0 20px var(--cyan-glow); }
+            50% { box-shadow: 0 0 20px var(--purple-glow), 0 0 35px var(--cyan-glow); }
+            100% { box-shadow: 0 0 10px var(--purple-glow), 0 0 20px var(--cyan-glow); }
+        }
 
-input{
-width:100%;
-padding:12px;
-border:none;
-outline:none;
-border-radius:12px;
-background:#111;
-color:white;
-margin-bottom:15px;
-}
+        /* ==========================================================================
+           2. HEADER
+           ========================================================================== */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            backdrop-filter: blur(12px);
+            animation: pulse-border 6s infinite ease-in-out;
+            position: relative;
+            z-index: 2;
+        }
 
-button{
-width:100%;
-padding:12px;
-border:none;
-border-radius:12px;
-background:red;
-color:white;
-font-size:16px;
-font-weight:bold;
-cursor:pointer;
-transition:.3s;
-}
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            z-index: 3;
+        }
 
-button:hover{
-transform:scale(1.05);
-}
+        .logo-text {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #fff 20%, var(--primary-purple) 60%, var(--cyan-neon) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 12px rgba(168, 85, 247, 0.5);
+        }
 
-.panel{
-display:none;
-margin-top:20px;
-}
+        .badge-ver {
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 6px;
+            background: rgba(168, 85, 247, 0.3);
+            border: 1px solid var(--primary-purple);
+            color: var(--cyan-neon);
+            border-radius: 4px;
+            box-shadow: 0 0 8px var(--purple-glow);
+        }
 
-.item{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin:12px 0;
-padding:10px;
-background:rgba(255,255,255,.05);
-border-radius:12px;
-}
+        .connection-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            color: #ffffff;
+            font-weight: 600;
+            position: relative;
+            z-index: 3;
+        }
 
-.switch{
-width:50px;
-height:25px;
-background:#333;
-border-radius:20px;
-cursor:pointer;
-position:relative;
-}
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--status-red);
+            box-shadow: 0 0 8px var(--status-red);
+            transition: all 0.3s ease;
+        }
 
-.circle{
-position:absolute;
-width:20px;
-height:20px;
-background:white;
-border-radius:50%;
-top:2.5px;
-left:3px;
-transition:.3s;
-}
+        .status-dot.ready {
+            background-color: var(--status-yellow);
+            box-shadow: 0 0 8px var(--status-yellow);
+        }
 
-.active{
-background:red;
-}
+        .status-dot.connected {
+            background-color: var(--status-green);
+            box-shadow: 0 0 8px var(--status-green);
+            animation: pulse-green 2s infinite;
+        }
 
-.active .circle{
-left:27px;
-}
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 4px var(--status-green); }
+            50% { box-shadow: 0 0 14px var(--status-green); }
+            100% { box-shadow: 0 0 4px var(--status-green); }
+        }
 
-.loading{
-display:none;
-margin-top:10px;
-}
+        /* ==========================================================================
+           3. STATUS PANEL
+           ========================================================================== */
+        .status-panel {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 12px 14px;
+            backdrop-filter: blur(12px);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
 
-.bar{
-width:100%;
-height:10px;
-background:#222;
-border-radius:20px;
-overflow:hidden;
-}
+        .status-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-purple), var(--cyan-neon), transparent);
+            z-index: 1;
+        }
 
-.fill{
-width:0%;
-height:100%;
-background:red;
-}
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 6px;
+            position: relative;
+            z-index: 3;
+        }
 
-.text{
-margin-top:6px;
-font-size:13px;
-text-align:center;
-}
+        @media (max-width: 640px) {
+            .status-grid { grid-template-columns: repeat(3, 1fr); }
+        }
 
-.warning{
-color:red;
-text-align:center;
-margin-top:10px;
-}
-</style>
+        @media (max-width: 380px) {
+            .status-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .status-item {
+            background: rgba(10, 8, 20, 0.7);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            padding: 6px 8px;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            position: relative;
+            z-index: 3;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .status-item:hover {
+            border-color: rgba(0, 243, 255, 0.5);
+            background: rgba(0, 243, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .status-label {
+            font-size: 0.62rem;
+            color: #d1d5db;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 3;
+        }
+
+        .status-value {
+            font-family: var(--font-display);
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #ffffff;
+            white-space: nowrap;
+            text-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+            position: relative;
+            z-index: 3;
+        }
+
+        .file-select-btn {
+            background: rgba(168, 85, 247, 0.25);
+            border: 1px solid var(--primary-purple);
+            color: var(--cyan-neon);
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            font-weight: 700;
+            border-radius: 4px;
+            padding: 2px 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            z-index: 4;
+        }
+
+        .file-select-btn:hover {
+            background: rgba(0, 243, 255, 0.3);
+            border-color: var(--cyan-neon);
+            box-shadow: 0 0 8px var(--cyan-glow);
+        }
+
+        .val-red { color: var(--status-red); text-shadow: 0 0 8px rgba(239, 68, 68, 0.6); }
+        .val-yellow { color: var(--status-yellow); text-shadow: 0 0 8px rgba(234, 179, 8, 0.6); }
+        .val-green { color: var(--status-green); text-shadow: 0 0 8px rgba(34, 197, 94, 0.6); }
+
+        .integrity-box {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .integrity-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.72rem;
+            color: #ffffff;
+            font-weight: 600;
+            position: relative;
+            z-index: 3;
+        }
+
+        .progress-bar-bg {
+            width: 100%;
+            height: 6px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 3px;
+            overflow: hidden;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            position: relative;
+            z-index: 3;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary-purple), var(--cyan-neon));
+            box-shadow: 0 0 10px var(--primary-purple);
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ==========================================================================
+           4. KEY ACTIVATION PANEL
+           ========================================================================== */
+        #keyPanel {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 12px 14px;
+            backdrop-filter: blur(12px);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @media (max-width: 600px) {
+            #keyPanel { flex-direction: column; }
+        }
+
+        .fade-out {
+            opacity: 0;
+            transform: translateY(-10px);
+            pointer-events: none;
+        }
+
+        .key-input {
+            flex: 1;
+            width: 100%;
+            padding: 10px 12px;
+            background: rgba(5, 5, 12, 0.8);
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            border-radius: 8px;
+            color: #ffffff;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            outline: none;
+            position: relative;
+            z-index: 3;
+            transition: all 0.3s ease;
+        }
+
+        .key-input:focus {
+            border-color: var(--cyan-neon);
+            box-shadow: 0 0 12px var(--cyan-glow);
+            background: rgba(0, 243, 255, 0.05);
+        }
+
+        .btn-inline-group {
+            display: flex;
+            gap: 8px;
+            white-space: nowrap;
+            position: relative;
+            z-index: 3;
+        }
+
+        @media (max-width: 600px) {
+            .btn-inline-group { width: 100%; }
+        }
+
+        .btn {
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 3;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-purple), #7c3aed);
+            color: #ffffff;
+            box-shadow: 0 0 12px var(--purple-glow);
+            text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 18px var(--purple-glow);
+            filter: brightness(1.15);
+        }
+
+        .btn-primary:active { transform: translateY(0); }
+
+        .btn-secondary {
+            background: rgba(0, 243, 255, 0.15);
+            border: 1px solid var(--cyan-neon);
+            color: var(--cyan-neon);
+            text-shadow: 0 0 6px var(--cyan-glow);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 243, 255, 0.3);
+            box-shadow: 0 0 15px var(--cyan-glow);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary:active { transform: translateY(0); }
+
+        /* ==========================================================================
+           5. SYSTEM CORE LAUNCH BUTTON
+           ========================================================================== */
+        .launch-btn-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-launch {
+            width: 100%;
+            max-width: 320px;
+            padding: 12px 20px;
+            font-size: 0.85rem;
+            border-radius: 30px;
+            background: rgba(20, 15, 35, 0.9);
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            color: #e5e7eb;
+            font-weight: 700;
+            cursor: not-allowed;
+            opacity: 0.7;
+            position: relative;
+            z-index: 3;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-launch.unlocked::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(
+                90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.4), 
+                transparent
+            );
+            animation: shimmer 2.5s infinite;
+        }
+
+        .btn-launch.unlocked {
+            cursor: pointer;
+            opacity: 1;
+            background: linear-gradient(135deg, var(--primary-purple), var(--cyan-neon));
+            color: #000000;
+            font-weight: 900;
+            border: none;
+            animation: neon-glow-pulse 2s infinite ease-in-out;
+        }
+
+        .btn-launch.unlocked:hover {
+            transform: translateY(-2px) scale(1.02);
+            filter: brightness(1.2);
+        }
+
+        .btn-launch.unlocked:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .btn-launch.active {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #ffffff;
+            text-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+            cursor: default;
+            animation: none;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .spinner {
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid #fff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ==========================================================================
+           6. FEATURE CARDS
+           ========================================================================== */
+        .group-container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--cyan-neon);
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-transform: uppercase;
+            text-shadow: 0 0 8px var(--cyan-glow);
+            position: relative;
+            z-index: 3;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(0, 243, 255, 0.5), transparent);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 10px;
+            margin-bottom: 14px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 10px;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            backdrop-filter: blur(8px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(0, 243, 255, 0.6);
+            transform: translateY(-2px);
+            background: rgba(25, 18, 45, 0.95);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .feature-card.active-card {
+            border-color: var(--cyan-neon);
+            background: rgba(15, 28, 48, 0.9);
+            box-shadow: inset 0 0 12px rgba(0, 243, 255, 0.15), 0 0 15px rgba(0, 243, 255, 0.25);
+        }
+
+        .feature-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .feature-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: rgba(168, 85, 247, 0.2);
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-purple);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 3;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+        }
+
+        .feature-card.active-card .feature-icon {
+            background: rgba(0, 243, 255, 0.2);
+            border-color: var(--cyan-neon);
+            color: var(--cyan-neon);
+            box-shadow: 0 0 10px var(--cyan-glow);
+        }
+
+        .feature-details {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 3;
+        }
+
+        .feature-name {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow: 0 0 4px rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 3;
+        }
+
+        .feature-desc {
+            font-size: 0.7rem;
+            color: #d1d5db;
+            font-weight: 400;
+            position: relative;
+            z-index: 3;
+        }
+
+        /* TOGGLE SWITCH */
+        .switch {
+            position: relative;
+            z-index: 3;
+            display: inline-block;
+            width: 38px;
+            height: 20px;
+            pointer-events: none;
+        }
+
+        .switch input { opacity: 0; width: 0; height: 0; }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: .3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 20px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 14px;
+            width: 14px;
+            left: 2px;
+            bottom: 2px;
+            background-color: #9ca3af;
+            transition: .3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: rgba(0, 243, 255, 0.25);
+            border-color: var(--cyan-neon);
+            box-shadow: 0 0 8px var(--cyan-glow);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(18px);
+            background-color: var(--cyan-neon);
+            box-shadow: 0 0 8px var(--cyan-neon);
+        }
+
+        /* RESET BUTTON */
+        .btn-reset {
+            width: 100%;
+            margin-top: 10px;
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid var(--status-red);
+            color: #fca5a5;
+            font-weight: 700;
+            padding: 12px;
+            font-size: 0.8rem;
+            border-radius: 8px;
+            position: relative;
+            z-index: 3;
+            text-shadow: 0 0 6px rgba(239, 68, 68, 0.4);
+        }
+
+        .btn-reset:hover {
+            background: rgba(239, 68, 68, 0.25);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.5);
+            transform: translateY(-1px);
+        }
+
+        /* ==========================================================================
+           7. TOAST NOTIFICATION SYSTEM
+           ========================================================================== */
+        #toastContainer {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            pointer-events: none;
+        }
+
+        .toast {
+            min-width: 240px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            background: rgba(10, 8, 19, 0.95);
+            backdrop-filter: blur(16px);
+            color: #ffffff;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+            border-left: 3px solid var(--primary-purple);
+            animation: slideInRight 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            pointer-events: auto;
+        }
+
+        .toast.toast-error {
+            border-left-color: var(--status-red);
+            box-shadow: 0 0 12px rgba(239, 68, 68, 0.3);
+        }
+
+        .toast.toast-success {
+            border-left-color: var(--status-green);
+            box-shadow: 0 0 12px rgba(34, 197, 94, 0.3);
+        }
+
+        .toast.toast-info {
+            border-left-color: var(--cyan-neon);
+            box-shadow: 0 0 12px rgba(0, 243, 255, 0.3);
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeOutUp {
+            to { opacity: 0; transform: translateY(-10px); }
+        }
+
+        /* ==========================================================================
+           8. FOOTER
+           ========================================================================== */
+        footer {
+            margin-top: auto;
+            padding: 14px 0 6px 0;
+            text-align: center;
+            font-size: 0.78rem;
+            color: #d1d5db;
+            font-weight: 500;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .author-tag {
+            color: var(--cyan-neon);
+            font-weight: 700;
+            text-shadow: 0 0 8px var(--cyan-glow);
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="box">
+    <div class="app-container">
+        
+        <!-- HEADER -->
+        <header>
+            <div class="logo-group">
+                <span class="logo-text">FLUORITE PRO</span>
+                <span class="badge-ver">v3.6</span>
+            </div>
+            <div class="connection-status">
+                <div class="status-dot" id="statusDot"></div>
+                <span id="headerStatusText">OFFLINE</span>
+            </div>
+        </header>
 
-<div class="logo">
-LOCK HEAD MODE
-</div>
+        <!-- STATUS PANEL -->
+        <div class="status-panel">
+            <div class="status-grid">
+                <div class="status-item">
+                    <span class="status-label">STATUS</span>
+                    <span class="status-value val-red" id="valStatus">OFFLINE</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">SYSTEM</span>
+                    <span class="status-value" id="valSystem">LOCKED</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">USER</span>
+                    <span class="status-value" id="valUser">Guest</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">BUILD</span>
+                    <span class="status-value">3.6.0</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">DEVICE</span>
+                    <span class="status-value" id="valDevice">Mobile</span>
+                </div>
+                
+                <!-- Ô CHỌN FILE -->
+                <div class="status-item">
+                    <span class="status-label">SYSTEM FILE</span>
+                    <div style="display: flex; align-items: center; justify-content: space-between; gap: 4px; margin-top: 2px;">
+                        <span class="status-value" id="valFileName" style="font-size: 0.65rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60px;">Chưa chọn</span>
+                        <button class="file-select-btn" onclick="document.getElementById('fileInput').click()">CHỌN</button>
+                    </div>
+                    <input type="file" id="fileInput" style="display: none;" onchange="handleFileSelect(event)">
+                </div>
+            </div>
 
-<div class="crack-by">
-Crack by tlvm (@HL2109)
-</div>
+            <div class="integrity-box">
+                <div class="integrity-header">
+                    <span>System integrity</span>
+                    <span id="integrityPercent">0%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="integrityBar"></div>
+                </div>
+            </div>
+        </div>
 
-<div id="login">
+        <!-- KEY ACTIVATION PANEL (Đã đổi type="password" để ẩn khi nhập) -->
+        <div id="keyPanel">
+            <input type="password" class="key-input" id="keyInput" placeholder="Nhập key kích hoạt Fluorite Pro" autocomplete="off" spellcheck="false">
+            <div class="btn-inline-group">
+                <button class="btn btn-primary" id="btnVerify">XÁC THỰC</button>
+                <button class="btn btn-secondary" id="btnGetFreeKey">LẤY KEY FREE</button>
+            </div>
+        </div>
 
-<input id="key" placeholder="Nhập bất kỳ ký tự nào...">
+        <!-- LAUNCH SYSTEM BUTTON -->
+        <div class="launch-btn-container">
+            <button class="btn btn-launch" id="btnLaunch">
+                <span class="spinner" id="launchSpinner"></span>
+                <span id="launchBtnText">KHỞI CHẠY CORE</span>
+            </button>
+        </div>
 
-<button onclick="checkKey()">
-ĐĂNG NHẬP
-</button>
+        <!-- COMBAT ASSIST -->
+        <div class="group-container">
+            <div class="section-title">⚡ Combat Assist</div>
+            <div class="feature-grid">
+                <div class="feature-card" data-feature="Smart Tracking">
+                    <div class="feature-info">
+                        <div class="feature-icon">🎯</div>
+                        <div class="feature-details">
+                            <span class="feature-name">Aimlock</span>
+                            <span class="feature-desc">Tối ưu hóa bám mục tiêu tự động</span>
+                        </div>
+                    </div>
+                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                </div>
 
-<div class="warning" id="warn"></div>
+                <div class="feature-card" data-feature="Dynamic Crosshair">
+                    <div class="feature-info">
+                        <div class="feature-icon">➕</div>
+                        <div class="feature-details">
+                            <span class="feature-name">Aimbot lite</span>
+                            <span class="feature-desc">Bám tâm mạnh</span>
+                        </div>
+                    </div>
+                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                </div>
 
-</div>
+                <div class="feature-card" data-feature="Precision Stabilizer">
+                    <div class="feature-info">
+                        <div class="feature-icon">⚓</div>
+                        <div class="feature-details">
+                            <span class="feature-name">Fix Vibration</span>
+                            <span class="feature-desc">Giảm độ rung tâm</span>
+                        </div>
+                    </div>
+                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                </div>
 
-<div class="panel" id="panel">
+                <div class="feature-card" data-feature="Target Prediction">
+                    <div class="feature-info">
+                        <div class="feature-icon">🔮</div>
+                        <div class="feature-details">
+                            <span class="feature-name">Bypass antiban</span>
+                            <span class="feature-desc">Chặn truy cập data</span>
+                        </div>
+                    </div>
+                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                </div>
+            </div>
+        </div>
 
-<div class="item">
-<span>AIMLOCK</span>
-<div class="switch" onclick="toggle(this)">
-<div class="circle"></div>
-</div>
-</div>
+        <!-- RESET HỆ THỐNG -->
+        <button class="btn btn-reset" id="btnResetSystem">🔄 RESET HỆ THỐNG</button>
 
-<div class="item">
-<span>AIMHEAD</span>
-<div class="switch" onclick="toggle(this)">
-<div class="circle"></div>
-</div>
-</div>
+        <!-- FOOTER -->
+        <footer>
+            Fluorite Pro © 2026 - Powered by <span class="author-tag">DongAnVip</span>
+        </footer>
 
-<div class="item">
-<span>NHẸ TÂM</span>
-<div class="switch" onclick="toggle(this)">
-<div class="circle"></div>
-</div>
-</div>
+    </div>
 
-<div class="item">
-<span>FIX RUNG</span>
-<div class="switch" onclick="toggle(this)">
-<div class="circle"></div>
-</div>
-</div>
+    <!-- TOAST CONTAINER -->
+    <div id="toastContainer"></div>
 
-<div class="item">
-<span>GHÌM TÂM</span>
-<div class="switch" onclick="toggle(this)">
-<div class="circle"></div>
-</div>
-</div>
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let isVerified = false;
+            let isSystemRunning = false;
 
-<div class="item">
-<span>BOOTS GAME</span>
-<div class="switch" onclick="toggle(this)">
-<div class="circle"></div>
-</div>
-</div>
+            // DOM Elements
+            const keyPanel = document.getElementById('keyPanel');
+            const keyInput = document.getElementById('keyInput');
+            const btnVerify = document.getElementById('btnVerify');
+            const btnGetFreeKey = document.getElementById('btnGetFreeKey');
+            const btnLaunch = document.getElementById('btnLaunch');
+            const launchBtnText = document.getElementById('launchBtnText');
+            const launchSpinner = document.getElementById('launchSpinner');
+            const btnResetSystem = document.getElementById('btnResetSystem');
 
-<div class="loading" id="load">
+            // Status Elements
+            const valStatus = document.getElementById('valStatus');
+            const valSystem = document.getElementById('valSystem');
+            const valUser = document.getElementById('valUser');
+            const valDevice = document.getElementById('valDevice');
+            const valFileName = document.getElementById('valFileName');
+            const integrityPercent = document.getElementById('integrityPercent');
+            const integrityBar = document.getElementById('integrityBar');
+            const statusDot = document.getElementById('statusDot');
+            const headerStatusText = document.getElementById('headerStatusText');
 
-<div class="bar">
-<div class="fill" id="fill"></div>
-</div>
+            // 1. Detect Device
+            function detectDevice() {
+                const ua = navigator.userAgent;
+                valDevice.textContent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua) ? 'Mobile' : 'Desktop';
+            }
+            detectDevice();
 
-<div class="text" id="text">
-Đang tải...
-</div>
+            // 2. Toast System
+            function showToast(message, type = 'info') {
+                const container = document.getElementById('toastContainer');
+                const toast = document.createElement('div');
+                toast.className = `toast toast-${type}`;
+                
+                let icon = 'ℹ️';
+                if (type === 'success') icon = '✅';
+                if (type === 'error') icon = '❌';
 
-</div>
+                toast.innerHTML = `<span>${icon}</span> <span>${message}</span>`;
+                container.appendChild(toast);
 
-</div>
+                setTimeout(() => {
+                    toast.style.animation = 'fadeOutUp 0.3s forwards';
+                    setTimeout(() => toast.remove(), 300);
+                }, 3000);
+            }
 
-<audio id="sound">
-<source src="https://www.soundjay.com/buttons/button-09.mp3">
-</audio>
+            window.showToast = showToast;
 
-</div>
+            // 3. Free Key Redirect (Đã loại bỏ confirm -> chuyển trực tiếp)
+            btnGetFreeKey.addEventListener('click', () => {
+                window.open('https://zalo.me/g/mpatck174', '_blank');
+            });
 
-<script>
+            // 4. Verify Key
+            function verifyKey(isAuto = false) {
+                const key = isAuto ? 'dongan-flu' : keyInput.value.trim();
 
-function checkKey(){
-    // Đã loại bỏ điều kiện kiểm tra chuỗi. Nhập gì cũng nhận và chuyển thẳng vào panel.
-    document.getElementById("login").style.display="none";
-    document.getElementById("panel").style.display="block";
-}
+                if (key === 'dongan-flu') {
+                    isVerified = true;
+                    localStorage.setItem('fluorite_verified', 'true');
 
-function toggle(x){
+                    if (!isAuto) showToast('Xác thực thành công', 'success');
 
-x.classList.toggle("active");
+                    valStatus.textContent = 'READY';
+                    valStatus.className = 'status-value val-yellow';
+                    statusDot.className = 'status-dot ready';
+                    headerStatusText.textContent = 'READY';
 
-document.getElementById("sound").play();
+                    valSystem.textContent = 'VERIFIED';
+                    valUser.textContent = 'DongAnVip';
 
-let load=document.getElementById("load");
-let fill=document.getElementById("fill");
-let text=document.getElementById("text");
+                    integrityPercent.textContent = '100%';
+                    integrityBar.style.width = '100%';
 
-load.style.display="block";
+                    btnLaunch.classList.add('unlocked');
 
-let i=0;
+                    keyPanel.classList.add('fade-out');
+                    setTimeout(() => {
+                        keyPanel.style.display = 'none';
+                    }, 400);
+                } else {
+                    showToast('Key không hợp lệ', 'error');
+                }
+            }
 
-let t=setInterval(()=>{
+            btnVerify.addEventListener('click', () => verifyKey(false));
+            keyInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') verifyKey(false);
+            });
 
-i++;
+            // 5. Restore State
+            if (localStorage.getItem('fluorite_verified') === 'true') {
+                verifyKey(true);
+            }
 
-fill.style.width=i+"%";
+            // 6. Launch Core
+            btnLaunch.addEventListener('click', () => {
+                if (!isVerified) {
+                    showToast('Hệ thống chưa được kích hoạt', 'error');
+                    return;
+                }
 
-text.innerHTML=
-"Đang Kích Hoạt "+i+"%";
+                if (isSystemRunning) return;
 
-if(i>=100){
+                launchSpinner.style.display = 'inline-block';
+                launchBtnText.textContent = 'ĐANG KÍCH HOẠT...';
+                btnLaunch.style.pointerEvents = 'none';
 
-clearInterval(t);
+                setTimeout(() => {
+                    isSystemRunning = true;
+                    launchSpinner.style.display = 'none';
 
-text.innerHTML=
-"✓ Hoàn tất";
+                    valStatus.textContent = 'CONNECTED';
+                    valStatus.className = 'status-value val-green';
+                    statusDot.className = 'status-dot connected';
+                    headerStatusText.textContent = 'CONNECTED';
 
-}
+                    valSystem.textContent = 'RUNNING';
 
-},20)
+                    btnLaunch.classList.remove('unlocked');
+                    btnLaunch.classList.add('active');
+                    launchBtnText.textContent = 'CORE ACTIVE';
 
-}
+                    showToast('Fluorite Core khởi chạy thành công', 'success');
+                }, 2000);
+            });
 
-</script>
+            // 7. Feature Cards Event
+            document.querySelectorAll('.feature-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const featureName = card.getAttribute('data-feature');
+                    const checkbox = card.querySelector('input[type="checkbox"]');
 
+                    if (!isVerified || !isSystemRunning) {
+                        showToast('Hệ thống chưa được khởi chạy', 'error');
+                        checkbox.checked = false;
+                        card.classList.remove('active-card');
+                        return;
+                    }
+
+                    checkbox.checked = !checkbox.checked;
+
+                    if (checkbox.checked) {
+                        card.classList.add('active-card');
+                        showToast(`Đã bật ${featureName}`, 'info');
+                    } else {
+                        card.classList.remove('active-card');
+                        showToast(`Đã tắt ${featureName}`, 'info');
+                    }
+                });
+            });
+
+            // 8. Reset System Logic
+            btnResetSystem.addEventListener('click', () => {
+                if (confirm('Bạn có chắc chắn muốn reset lại toàn bộ trạng thái hệ thống?')) {
+                    localStorage.removeItem('fluorite_verified');
+
+                    isVerified = false;
+                    isSystemRunning = false;
+
+                    // Reset Status
+                    valStatus.textContent = 'OFFLINE';
+                    valStatus.className = 'status-value val-red';
+                    statusDot.className = 'status-dot';
+                    headerStatusText.textContent = 'OFFLINE';
+
+                    valSystem.textContent = 'LOCKED';
+                    valUser.textContent = 'Guest';
+                    valFileName.textContent = 'Chưa chọn';
+
+                    integrityPercent.textContent = '0%';
+                    integrityBar.style.width = '0%';
+
+                    // Reset Launch Button
+                    btnLaunch.className = 'btn btn-launch';
+                    btnLaunch.style.pointerEvents = 'auto';
+                    launchBtnText.textContent = 'KHỞI CHẠY CORE';
+
+                    // Reset Toggles
+                    document.querySelectorAll('.feature-card').forEach(card => {
+                        card.classList.remove('active-card');
+                        card.querySelector('input[type="checkbox"]').checked = false;
+                    });
+
+                    // Show Key Panel
+                    keyInput.value = '';
+                    keyPanel.classList.remove('fade-out');
+                    keyPanel.style.display = 'flex';
+
+                    showToast('Đã reset hệ thống về trạng thái ban đầu', 'info');
+                }
+            });
+        });
+
+        // Hàm xử lý chọn File
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            const valFileName = document.getElementById('valFileName');
+            if (file) {
+                valFileName.textContent = file.name;
+                if (window.showToast) {
+                    window.showToast(`Đã nạp file: ${file.name}`, 'success');
+                }
+            }
+        }
+    </script>
 </body>
 </html>
